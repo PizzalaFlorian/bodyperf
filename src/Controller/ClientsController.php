@@ -18,9 +18,6 @@ class ClientsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Clients']
-        ];
         $clients = $this->paginate($this->Clients);
 
         $this->set(compact('clients'));
@@ -37,7 +34,7 @@ class ClientsController extends AppController
     public function view($id = null)
     {
         $client = $this->Clients->get($id, [
-            'contain' => ['Clients']
+            'contain' => ['Reservations']
         ]);
 
         $this->set('client', $client);
@@ -61,8 +58,7 @@ class ClientsController extends AppController
                 $this->Flash->error(__('The client could not be saved. Please, try again.'));
             }
         }
-        $clients = $this->Clients->Clients->find('list', ['limit' => 200]);
-        $this->set(compact('client', 'clients'));
+        $this->set(compact('client'));
         $this->set('_serialize', ['client']);
     }
 
@@ -87,8 +83,7 @@ class ClientsController extends AppController
                 $this->Flash->error(__('The client could not be saved. Please, try again.'));
             }
         }
-        $clients = $this->Clients->Clients->find('list', ['limit' => 200]);
-        $this->set(compact('client', 'clients'));
+        $this->set(compact('client'));
         $this->set('_serialize', ['client']);
     }
 

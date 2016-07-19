@@ -19,6 +19,8 @@
     <fieldset>
         <legend><?= __('Edit Reservation') ?></legend>
         <?php
+            echo $this->Form->input('id');
+            echo $this->Form->input('code_client');
             echo $this->Form->input('date');
         ?>
     </fieldset>

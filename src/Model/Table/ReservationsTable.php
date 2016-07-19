@@ -9,9 +9,6 @@ use Cake\Validation\Validator;
 /**
  * Reservations Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Reservations
- * @property \Cake\ORM\Association\BelongsTo $Clients
- *
  * @method \App\Model\Entity\Reservation get($primaryKey, $options = [])
  * @method \App\Model\Entity\Reservation newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Reservation[] newEntities(array $data, array $options = [])
@@ -36,15 +33,6 @@ class ReservationsTable extends Table
         $this->table('reservations');
         $this->displayField('reservation_id');
         $this->primaryKey(['reservation_id', 'client_id']);
-
-        $this->belongsTo('Reservations', [
-            'foreignKey' => 'reservation_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Clients', [
-            'foreignKey' => 'client_id',
-            'joinType' => 'INNER'
-        ]);
     }
 
     /**
@@ -55,6 +43,14 @@ class ReservationsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        $validator
+            ->allowEmpty('id', 'create');
+
+        $validator
+            ->requirePresence('code_client', 'create')
+            ->notEmpty('code_client')
+            ->add('code_client', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+
         $validator
             ->dateTime('date')
             ->requirePresence('date', 'create')
@@ -72,8 +68,7 @@ class ReservationsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['reservation_id'], 'Reservations'));
-        $rules->add($rules->existsIn(['client_id'], 'Clients'));
+        $rules->add($rules->isUnique(['code_client']));
         return $rules;
     }
 }

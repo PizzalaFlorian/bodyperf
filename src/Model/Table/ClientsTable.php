@@ -9,8 +9,6 @@ use Cake\Validation\Validator;
 /**
  * Clients Model
  *
- * @property \Cake\ORM\Association\HasMany $Reservations
- *
  * @method \App\Model\Entity\Client get($primaryKey, $options = [])
  * @method \App\Model\Entity\Client newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Client[] newEntities(array $data, array $options = [])
@@ -35,10 +33,6 @@ class ClientsTable extends Table
         $this->table('clients');
         $this->displayField('client_id');
         $this->primaryKey('client_id');
-
-        $this->hasMany('Reservations', [
-            'foreignKey' => 'client_id'
-        ]);
     }
 
     /**
@@ -50,43 +44,31 @@ class ClientsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->allowEmpty('id', 'create');
+            ->allowEmpty('code', 'create');
 
         $validator
-            ->requirePresence('login', 'create')
-            ->notEmpty('login');
+            ->requirePresence('nom', 'create')
+            ->notEmpty('nom');
 
         $validator
-            ->allowEmpty('nom');
+            ->requirePresence('prenom', 'create')
+            ->notEmpty('prenom');
 
         $validator
-            ->allowEmpty('prenom');
-
-        $validator
-            ->integer('credit_sceance')
-            ->allowEmpty('credit_sceance');
+            ->integer('credit_solo')
+            ->requirePresence('credit_solo', 'create')
+            ->notEmpty('credit_solo');
 
         $validator
             ->integer('credit_duo')
-            ->allowEmpty('credit_duo');
+            ->requirePresence('credit_duo', 'create')
+            ->notEmpty('credit_duo');
 
         $validator
-            ->dateTime('fin_abonnement')
-            ->allowEmpty('fin_abonnement');
+            ->date('fin_abonnement')
+            ->requirePresence('fin_abonnement', 'create')
+            ->notEmpty('fin_abonnement');
 
         return $validator;
-    }
-
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->isUnique(['login']));
-        return $rules;
     }
 }

@@ -11,8 +11,8 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('reservation_id') ?></th>
-                <th><?= $this->Paginator->sort('client_id') ?></th>
+                <th><?= $this->Paginator->sort('id') ?></th>
+                <th><?= $this->Paginator->sort('code_client') ?></th>
                 <th><?= $this->Paginator->sort('date') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -20,8 +20,8 @@
         <tbody>
             <?php foreach ($reservations as $reservation): ?>
             <tr>
-                <td><?= $reservation->has('reservation') ? $this->Html->link($reservation->reservation->reservation_id, ['controller' => 'Reservations', 'action' => 'view', $reservation->reservation->reservation_id]) : '' ?></td>
-                <td><?= $reservation->has('client') ? $this->Html->link($reservation->client->client_id, ['controller' => 'Clients', 'action' => 'view', $reservation->client->client_id]) : '' ?></td>
+                <td><?= $this->Number->format($reservation->id) ?></td>
+                <td><?= $this->Number->format($reservation->code_client) ?></td>
                 <td><?= h($reservation->date) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $reservation->reservation_id]) ?>

@@ -4,16 +4,13 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Reservation Entity
+ * Indisponibilite Entity
  *
  * @property int $id
- * @property int $code_client
- * @property \Cake\I18n\Time $date
- *
- * @property \App\Model\Entity\Reservation $reservation
- * @property \App\Model\Entity\Client $client
+ * @property \Cake\I18n\Time $date_debut
+ * @property \Cake\I18n\Time $date_fin
  */
-class Reservation extends Entity
+class Indisponibilite extends Entity
 {
 
     /**
@@ -27,7 +24,6 @@ class Reservation extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'reservation_id' => false,
-        'client_id' => false
+        'id' => false
     ];
 }

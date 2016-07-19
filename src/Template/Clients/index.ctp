@@ -2,6 +2,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Client'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Reservations'), ['controller' => 'Reservations', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Reservation'), ['controller' => 'Reservations', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="clients index large-9 medium-8 columns content">
@@ -9,11 +11,10 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
-                <th><?= $this->Paginator->sort('login') ?></th>
+                <th><?= $this->Paginator->sort('code') ?></th>
                 <th><?= $this->Paginator->sort('nom') ?></th>
                 <th><?= $this->Paginator->sort('prenom') ?></th>
-                <th><?= $this->Paginator->sort('credit_sceance') ?></th>
+                <th><?= $this->Paginator->sort('credit_solo') ?></th>
                 <th><?= $this->Paginator->sort('credit_duo') ?></th>
                 <th><?= $this->Paginator->sort('fin_abonnement') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
@@ -22,11 +23,10 @@
         <tbody>
             <?php foreach ($clients as $client): ?>
             <tr>
-                <td><?= $this->Number->format($client->id) ?></td>
-                <td><?= h($client->login) ?></td>
+                <td><?= $this->Number->format($client->code) ?></td>
                 <td><?= h($client->nom) ?></td>
                 <td><?= h($client->prenom) ?></td>
-                <td><?= $this->Number->format($client->credit_sceance) ?></td>
+                <td><?= $this->Number->format($client->credit_solo) ?></td>
                 <td><?= $this->Number->format($client->credit_duo) ?></td>
                 <td><?= h($client->fin_abonnement) ?></td>
                 <td class="actions">

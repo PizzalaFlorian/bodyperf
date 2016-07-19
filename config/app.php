@@ -227,8 +227,8 @@ return [
              */
             //'port' => 'non_standard_port_number',
             'username' => 'bodyperf',
-            'password' => 'ouacombodyperf',
-            'database' => 'c9',
+            'password' => 'bodyapp',
+            'database' => 'bodyperf',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],
@@ -253,7 +253,7 @@ return [
              * which is the recommended value in production environments
              */
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
-            
+
             'url' => env('DATABASE_URL', null),
         ],
 

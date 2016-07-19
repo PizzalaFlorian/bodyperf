@@ -6,15 +6,14 @@ use Cake\ORM\Entity;
 /**
  * Client Entity
  *
- * @property int $id
- * @property string $login
+ * @property int $code
  * @property string $nom
  * @property string $prenom
- * @property int $credit_sceance
+ * @property int $credit_solo
  * @property int $credit_duo
  * @property \Cake\I18n\Time $fin_abonnement
  *
- * @property \App\Model\Entity\Client $client
+ * @property \App\Model\Entity\Reservation[] $reservations
  */
 class Client extends Entity
 {

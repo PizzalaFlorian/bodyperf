@@ -8,8 +8,8 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Clients'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Clients'), ['controller' => 'Clients', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Client'), ['controller' => 'Clients', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Reservations'), ['controller' => 'Reservations', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Reservation'), ['controller' => 'Reservations', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="clients form large-9 medium-8 columns content">
@@ -17,13 +17,12 @@
     <fieldset>
         <legend><?= __('Edit Client') ?></legend>
         <?php
-            echo $this->Form->input('id');
-            echo $this->Form->input('login');
+            echo $this->Form->input('code');
             echo $this->Form->input('nom');
             echo $this->Form->input('prenom');
-            echo $this->Form->input('credit_sceance');
+            echo $this->Form->input('credit_solo');
             echo $this->Form->input('credit_duo');
-            echo $this->Form->input('fin_abonnement', ['empty' => true]);
+            echo $this->Form->input('fin_abonnement');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

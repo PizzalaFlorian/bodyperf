@@ -15,10 +15,10 @@
     <fieldset>
         <legend><?= __('Edit User') ?></legend>
         <?php
-            echo $this->Form->input('login',['type'=>'text','required'=>true]);
+            echo $this->Form->input('id');
             echo $this->Form->input('email');
-            echo $this->Form->input('type_user');
             echo $this->Form->input('password');
+            echo $this->Form->input('type');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -15,12 +15,12 @@
     <h3><?= h($reservation->reservation_id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th><?= __('Reservation') ?></th>
-            <td><?= $reservation->has('reservation') ? $this->Html->link($reservation->reservation->reservation_id, ['controller' => 'Reservations', 'action' => 'view', $reservation->reservation->reservation_id]) : '' ?></td>
+            <th><?= __('Id') ?></th>
+            <td><?= $this->Number->format($reservation->id) ?></td>
         </tr>
         <tr>
-            <th><?= __('Client') ?></th>
-            <td><?= $reservation->has('client') ? $this->Html->link($reservation->client->client_id, ['controller' => 'Clients', 'action' => 'view', $reservation->client->client_id]) : '' ?></td>
+            <th><?= __('Code Client') ?></th>
+            <td><?= $this->Number->format($reservation->code_client) ?></td>
         </tr>
         <tr>
             <th><?= __('Date') ?></th>

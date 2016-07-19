@@ -2,11 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Event\Event;
-use Cake\Auth\DefaultPasswordHasher;
-use Cake\ORM\Table;
-use Cake\Validation\Validator;
-use Cake\Mailer\Email;
 
 /**
  * Users Controller
@@ -28,34 +23,7 @@ class UsersController extends AppController
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
     }
-    
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-        // Allow users to register and logout.
-        // You should not add the "login" action to allow list. Doing so would
-        // cause problems with normal functioning of AuthComponent.
-        $this->Auth->allow(['logout']);
-    }
 
-    public function login()
-    {
-        if ($this->request->is('post')) {
-            debug($this->request->data);
-            $user = $this->Auth->identify();
-            debug($user);
-            if ($user) {
-                $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
-            }
-            $this->Flash->error(__('login ou mot de passe invalide'));
-        }
-    }
-
-    public function logout()
-    {
-        return $this->redirect($this->Auth->logout());
-    }
     /**
      * View method
      *

@@ -11,20 +11,20 @@
     <h3><?= h($user->login) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th><?= __('Login') ?></th>
-            <td><?= h($user->login) ?></td>
-        </tr>
-        <tr>
             <th><?= __('Email') ?></th>
             <td><?= h($user->email) ?></td>
         </tr>
         <tr>
-            <th><?= __('Type User') ?></th>
-            <td><?= h($user->type_user) ?></td>
-        </tr>
-        <tr>
             <th><?= __('Password') ?></th>
             <td><?= h($user->password) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Type') ?></th>
+            <td><?= h($user->type) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Id') ?></th>
+            <td><?= $this->Number->format($user->id) ?></td>
         </tr>
     </table>
 </div>

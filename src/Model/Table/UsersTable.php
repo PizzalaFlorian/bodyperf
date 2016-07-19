@@ -35,21 +35,30 @@ class UsersTable extends Table
         $this->primaryKey('login');
     }
 
-    
+    /**
+     * Default validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->notEmpty('login', 'create');
+            ->allowEmpty('id', 'create');
 
         $validator
             ->email('email')
-            ->notEmpty('email');
+            ->requirePresence('email', 'create')
+            ->notEmpty('email')
+            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
-            ->notEmpty('type_user');
-
-        $validator
+            ->requirePresence('password', 'create')
             ->notEmpty('password');
+
+        $validator
+            ->requirePresence('type', 'create')
+            ->notEmpty('type');
 
         return $validator;
     }
@@ -63,7 +72,6 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['login']));
         $rules->add($rules->isUnique(['email']));
         return $rules;
     }
