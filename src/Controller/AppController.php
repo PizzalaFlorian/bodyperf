@@ -40,10 +40,43 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
-
-        $this->loadComponent('RequestHandler');
+		$this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+		$this->loadComponent('Auth', [
+			'loginAction' => [
+				'controller' => 'Users',
+				'action' => 'login'
+			],
+            'authenticate' => [
+                'Form' => [
+                    'fields' => [
+                        'username' => 'login',
+                        'password' => 'password'
+                    ]
+                ]
+            ],
+            'loginRedirect' => [
+                'controller' => 'Users',
+                'action' => 'index'
+            ],
+			'storage' => 'Session'
+		]);
     }
+    
+//     public function isAuthorized($user)
+// {
+//     // Admin peuvent accéder à chaque action
+//     if (isset($user['type_user']) && $user['type_user'] === 'admin') {
+//         return true;
+//     }
+//         // Par défaut refuser
+//         return false;
+//     }
+
+    // public function beforeFilter(Event $event)
+    // {
+    //     $this->Auth->allow(['index','add','delete','view', 'display','edit']);
+    // }
 
     /**
      * Before render callback.
